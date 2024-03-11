@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
 
-def linear(x, a, b):
+def linear(x, b, a):
     return b * x + a
 
 
-def quadratic(x, a, b, c):
+def quadratic(x, c, b, a):
     return c * x ** 2 + b * x + a
 
 
