@@ -41,7 +41,7 @@ def fit_linear(xdata, ydata):
     plt.legend()
     plt.savefig("LinearFit.png")
     plt.show()
-    print(popt)
+    #print(popt)
 
     # Calculate residuals
     residuals = ydata - fitted_line
@@ -64,7 +64,7 @@ def fit_quadratic(xdata, ydata):
     plt.legend()
     plt.savefig("QuadraticFit.png")
     plt.show()
-    print(popt)
+    #print(popt)
 
     # Calculate residuals
     residuals = ydata - fitted_line
@@ -79,12 +79,15 @@ def calculate_chi(xdata, fittedxdata, uncertainty):
     :param xdata: Original xdata
     :param fittedxdata: The xdata calculated from fitted parameters
     '''
-    Q = ((xdata - fittedxdata) ** 2 / uncertainty)
+    Q = ((xdata - fittedxdata) ** 2 / uncertainty**2)
     return np.sum(Q)
 
 
 if __name__ == "__main__":
     time, data = generate_data()
+
+    print("Original data:")
+    print(data)
 
     N = len(data)
 
@@ -92,16 +95,30 @@ if __name__ == "__main__":
     # fit_linear(time, data)
     # fit_quadratic(time, data)
 
+    print("First fitted data:")
+    print(fitteddata)
+    print("Sigma for first fitted data:")
+    print(sigma)
+
+
+
     sum = calculate_chi(data, fitteddata, sigma)
 
     print("Linear fitting X^2 test:")
-    print("N-k: {}".format(N - 3))
+    print("N-k: {}".format(N - 2))
 
     print("X^2 result:{}".format(sum))
 
     popt, fitteddata, sigma = fit_quadratic(time, data)
     # fit_linear(time, data)
     # fit_quadratic(time, data)
+
+
+    print("Second fitted data:")
+    print(fitteddata)
+    print("Sigma for second fitted data:")
+    print(sigma)
+
 
     sum = calculate_chi(data, fitteddata, sigma)
 
