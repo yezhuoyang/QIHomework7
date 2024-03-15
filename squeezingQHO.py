@@ -140,18 +140,23 @@ def plot_xp_sigma():
         sigmaxp_list.append(sigmax * sigmap)
     plt.figure(1)
 
+    maxx = max(sigmax_list)
+
     plt.plot(tlist, sigmax_list, label=r'$\sigma_x$')
     plt.xlabel("Time")
     plt.title(r'$\sigma_x$ versue Time for Coherent State')
     plt.legend()
+    plt.ylim(0.5 * maxx, 1.5 * maxx)
     plt.savefig("SigmaXCoherent")
     plt.show()
 
     plt.figure(2)
 
+    maxp = max(sigmap_list)
     plt.plot(tlist, sigmap_list, label=r'$\sigma_p$')
     plt.xlabel("Time")
     plt.title(r'$\sigma_p$ versue Time for Coherent State')
+    plt.ylim(0.5 * maxp, 1.5 * maxp)
     plt.legend()
     plt.savefig("SigmaPCoherent")
     plt.show()
@@ -161,6 +166,8 @@ def plot_xp_sigma():
     plt.plot(tlist, sigmaxp_list, label=r'$\sigma_{x}\sigma_{p}$')
     plt.xlabel("Time")
     plt.title("$\sigma_{x}\sigma_{p}$ versue Time")
+    plt.axhline(hbar / 2, color='red', linestyle="--", label=r'$\hbar/2$')
+    plt.ylim(0, 1)
     plt.legend()
     plt.savefig("SigmaXPCoherent")
     plt.show()
@@ -322,7 +329,6 @@ def drive_two_terms():
     plt.legend()
     plt.show()
 
-
     plt.figure(2)
     plt.plot(times, sigmax_list, label=r'$\sigma_x$')
     plt.xlabel("Time")
@@ -339,9 +345,6 @@ def drive_two_terms():
     plt.legend()
     plt.show()
 
-
-
-
     plt.figure(4)
     plt.plot(sigmax_list, sigmap_list, label=r'$\sigma_x\sigma_p$')
     plt.xlabel("Time")
@@ -352,8 +355,6 @@ def drive_two_terms():
     plt.show()
 
 
-
-
 if __name__ == "__main__":
     # plot_xp_sigma()
     # plot_xp_phase_squeeze_diag()
@@ -362,9 +363,10 @@ if __name__ == "__main__":
     # plot_xp_sigma_squeeze()
     # plot_xp_phase_squeeze_diag()
     # plot_xp_phase_diag()
-    #drive()
+    # drive()
     # plot_xp_sigma()
 
     # drive_two_terms()
     # plot_xp_sigma_squeeze()
-    drive_two_terms()
+    # drive_two_terms()
+    plot_xp_sigma()
