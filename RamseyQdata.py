@@ -13,7 +13,7 @@ def sample_bernoulli(P):
 
 
 def plot_tw(tw):
-    N = 11010
+    N = 1
     Omega = 2 * np.pi
 
     delta = np.pi / 4
@@ -36,23 +36,25 @@ def plot_tw(tw):
 
     return oneinstances / N
 
+
 import matplotlib.pyplot as plt
-
-
-
-
-
-
-
 
 if __name__ == "__main__":
     Omega = 2 * np.pi
-    tmax = 1000*np.pi / (2 * np.pi)
+    tmax = 8 * np.pi / (2 * np.pi)
 
-    tw_list = np.linspace(0, tmax, 1000)
+    tw_list = np.linspace(0, tmax, 500)
 
     P1_plot_list = [plot_tw(x) for x in tw_list]
 
-    plt.plot(tw_list, P1_plot_list)
+    plt.plot(tw_list, P1_plot_list, label=r'$P_1$ when N=1')
 
+    plt.xlabel(r'$t_w$')
+    plt.ylabel(r'$P_1$')
+
+    plt.title(r'$P_1$ when $N=1$')
+
+    plt.legend()
+
+    plt.savefig("N1P1")
     plt.show()
